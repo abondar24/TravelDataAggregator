@@ -4,7 +4,7 @@ import java.time.Instant;
 
 public record HotelBooking(
         Long id,
-        Long cityId,
+        String city,
         Integer numberOfPeople,
         Instant bookingStart,
         Instant bookingEnd

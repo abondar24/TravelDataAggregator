@@ -4,7 +4,7 @@ import java.time.Instant;
 
 public record FlightBooking(
         Long id,
-        Long destinationCityId,
+        String destinationCity,
         String flightNumber,
         String ticketNumber,
         Instant arrivalTime
