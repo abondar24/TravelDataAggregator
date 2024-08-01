@@ -4,3 +4,8 @@ spring:
     username: travel
     password: travel1@#
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis:
+  type-aliases-package: org.abondar.exerimental.travel.model.db
+  mapper-locations: classpath:mybatis/mapper/*mapper.xml
