@@ -9,3 +9,8 @@ spring:
 mybatis:
   type-aliases-package: org.abondar.exerimental.travel.model.db
   mapper-locations: classpath:mybatis/mapper/*mapper.xml
+
+
+batch:
+  local:
+    hotel-file: data/hotel/hotel_bookings.json
