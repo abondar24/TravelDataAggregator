@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jbdc:mysql://localhost:3306/travel_data?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: travel
+    password: travel1@#
+    driver-class-name: com.mysql.cj.jdbc.Driver

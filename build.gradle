@@ -1,8 +1,13 @@
 plugins {
     id 'java'
+    id "idea"
+    id "org.springframework.boot" version "$springBootVersion"
 }
 
-group = 'org.abondar.experimental.inventory'
+apply plugin: "java"
+apply plugin: "io.spring.dependency-management"
+
+group = 'org.abondar.experimental.travel'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -10,8 +15,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation ("org.springframework.boot:spring-boot-starter-batch")
+    implementation ("org.springframework.boot:spring-boot-starter-mail")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation ("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
+
+    implementation("org.flywaydb:flyway-core:$flywayVersion")
+    implementation("org.flywaydb:flyway-mysql:$flywayVersion")
+    implementation("com.mysql:mysql-connector-j:$mysqlVersion")
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation("org.testcontainers:mysql:$testConVersion")
 }
 
 test {
