@@ -21,13 +21,19 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation ("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
-
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    implementation ("net.logstash.logback:logstash-logback-encoder:$encoderVersion")
     implementation("org.flywaydb:flyway-core:$flywayVersion")
     implementation("org.flywaydb:flyway-mysql:$flywayVersion")
     implementation("com.mysql:mysql-connector-j:$mysqlVersion")
     implementation ("net.logstash.logback:logstash-logback-encoder:$encoderVersion")
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.batch:spring-batch-test")
+    testImplementation ("com.h2database:h2")
+
+    testImplementation("org.testcontainers:junit-jupiter:$testConVersion")
+    testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:$mybatisVersion")
     testImplementation("org.testcontainers:mysql:$testConVersion")
 }
 

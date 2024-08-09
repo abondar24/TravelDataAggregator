@@ -1,12 +1,22 @@
 package org.abondar.experimental.travel.model.db;
 
-import java.time.Instant;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record HotelBooking(
-        Long id,
-        String city,
-        Integer numberOfPeople,
-        Instant bookingStart,
-        Instant bookingEnd
-) {
+import java.sql.Timestamp;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class HotelBooking{
+      private Long id;
+      private   String city;
+      private   String hotelName;
+      private   Integer numberOfPeople;
+      private   Timestamp bookingStart;
+      private   Timestamp bookingEnd;
+
+
+
 }

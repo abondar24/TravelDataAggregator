@@ -5,6 +5,10 @@ import org.abondar.experimental.travel.model.batch.HotelBatchItem;
 import org.abondar.experimental.travel.model.db.HotelBooking;
 import org.springframework.batch.item.ItemProcessor;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.ZoneOffset;
+
 @Slf4j
 public class HotelBookingItemProcessor implements ItemProcessor<HotelBatchItem, HotelBooking> {
 
@@ -12,9 +16,10 @@ public class HotelBookingItemProcessor implements ItemProcessor<HotelBatchItem, 
     @Override
     public HotelBooking process(HotelBatchItem item) throws Exception {
 
+        var fromTs = Timestamp.from(item.bookingStart().toInstant());
+        var toTs = Timestamp.from(item.bookingEnd().toInstant());
 
-        var hotelBooking = new HotelBooking(0L, item.city(), item.numberOfPeople(),
-                item.bookingStart(), item.bookingEnd());
+        var hotelBooking = new HotelBooking(0L, item.city(), item.hotelName(),item.numberOfPeople(),fromTs,toTs);
 
         log.info("Hotel booking processed");
 
