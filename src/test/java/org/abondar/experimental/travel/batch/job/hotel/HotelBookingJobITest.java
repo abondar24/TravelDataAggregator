@@ -1,4 +1,4 @@
-package org.abondar.experimental.travel.batch.job;
+package org.abondar.experimental.travel.batch.job.hotel;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
