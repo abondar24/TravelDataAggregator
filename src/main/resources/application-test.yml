@@ -12,6 +12,5 @@ spring:
       enabled: true
 
 
-batch:
-  local:
-    hotel-file: src/main/resources/testData/hotel_bookings.json
+file:
+  hotel: src/main/resources/testData/hotel_bookings.json

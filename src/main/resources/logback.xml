@@ -14,11 +14,9 @@
     </appender>
 
 
-    <springProfile name="test | mysql">
-        <root level="info">
-            <appender-ref ref="CONSOLE"/>
-        </root>
-    </springProfile>
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
 
     <springProfile name="docker">
         <root level="info">

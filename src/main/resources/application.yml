@@ -19,6 +19,13 @@ mybatis:
   type-aliases-package: org.abondar.experimental.travel.model.db
   mapper-locations: classpath:mapper/*Mapper.xml
 
-batch:
-  local:
-    hotel-file: data/hotel/hotel_bookings.json
+sftp:
+  host: localhost
+  port: 22
+  username: fUser
+  password: fPass
+  enabled: false
+
+
+file:
+  hotel: data/hotel/hotel_bookings.json

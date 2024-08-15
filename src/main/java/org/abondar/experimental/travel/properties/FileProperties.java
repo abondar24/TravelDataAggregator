@@ -6,10 +6,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "batch.local")
+@ConfigurationProperties(prefix = "file")
 @Getter
 @Setter
-public class BatchLocalProperties {
+public class FileProperties {
 
-    private String hotelFile;
+    private String hotel;
+
+    //TODO: EXTEND WITH THE OTHER TYPES
 }
