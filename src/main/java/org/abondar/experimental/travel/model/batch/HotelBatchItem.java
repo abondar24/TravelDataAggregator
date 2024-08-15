@@ -3,12 +3,13 @@ package org.abondar.experimental.travel.model.batch;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 public record HotelBatchItem(
         String city,
+
+        @JsonProperty("trip_id")
+        String tripId,
 
         @JsonProperty("hotel_name")
         String hotelName,

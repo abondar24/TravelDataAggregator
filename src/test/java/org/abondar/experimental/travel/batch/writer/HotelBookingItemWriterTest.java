@@ -1,5 +1,6 @@
-package org.abondar.experimental.travel.batch.hotel;
+package org.abondar.experimental.travel.batch.writer;
 
+import org.abondar.experimental.travel.batch.writer.HotelBookingItemWriter;
 import org.abondar.experimental.travel.mapper.HotelBookingMapper;
 import org.abondar.experimental.travel.model.db.HotelBooking;
 import org.junit.jupiter.api.Test;
@@ -26,9 +27,9 @@ public class HotelBookingItemWriterTest {
 
     @Test
     public void writeTest() throws Exception {
-        HotelBooking booking1 = new HotelBooking(1L, "Amsterdam", "Sheraton",
+        HotelBooking booking1 = new HotelBooking(1L, "trp1","Amsterdam", "Sheraton",
                 2, Timestamp.from(Instant.now()), Timestamp.from(Instant.now()));
-        HotelBooking booking2 = new HotelBooking(2L, "Paris", "Mariott",
+        HotelBooking booking2 = new HotelBooking(2L,"trp1", "Paris", "Mariott",
                 1, Timestamp.from(Instant.now()), Timestamp.from(Instant.now()));
         List<HotelBooking> bookings = List.of(booking1, booking2);
         Chunk<HotelBooking> chunk = new Chunk<>(bookings);

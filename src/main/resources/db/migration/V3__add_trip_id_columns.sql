@@ -1,0 +1,2 @@
+ALTER TABLE hotel_booking ADD COLUMN trip_id VARCHAR(255) NOT NULL ;
+ALTER TABLE flight_booking ADD COLUMN trip_id VARCHAR(255) NOT NULL ;

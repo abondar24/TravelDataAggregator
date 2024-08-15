@@ -24,7 +24,8 @@ public class HotelBookingMapperTest {
 
     @Test
     public void insertHotelBooking() {
-        HotelBooking hotelBooking = new HotelBooking(0L, "Amsterdam", "Sheraton",
+        HotelBooking hotelBooking = new HotelBooking(0L, "trp1",
+                "Amsterdam", "Sheraton",
                 2, Timestamp.from(Instant.now()), Timestamp.from(Instant.now()));
 
         mapper.insertHotelBookings(List.of(hotelBooking));

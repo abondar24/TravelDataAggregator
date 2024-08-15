@@ -1,4 +1,4 @@
-package org.abondar.experimental.travel.batch.hotel;
+package org.abondar.experimental.travel.batch.writer;
 
 
 import lombok.RequiredArgsConstructor;

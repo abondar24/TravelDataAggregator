@@ -1,4 +1,4 @@
-package org.abondar.experimental.travel.batch.hotel;
+package org.abondar.experimental.travel.batch.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.abondar.experimental.travel.model.batch.HotelBatchItem;
@@ -6,8 +6,6 @@ import org.abondar.experimental.travel.model.db.HotelBooking;
 import org.springframework.batch.item.ItemProcessor;
 
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.ZoneOffset;
 
 @Slf4j
 public class HotelBookingItemProcessor implements ItemProcessor<HotelBatchItem, HotelBooking> {
@@ -19,7 +17,8 @@ public class HotelBookingItemProcessor implements ItemProcessor<HotelBatchItem, 
         var fromTs = Timestamp.from(item.bookingStart().toInstant());
         var toTs = Timestamp.from(item.bookingEnd().toInstant());
 
-        var hotelBooking = new HotelBooking(0L, item.city(), item.hotelName(),item.numberOfPeople(),fromTs,toTs);
+        var hotelBooking = new HotelBooking(0L,item.tripId(), item.city(),
+                item.hotelName(),item.numberOfPeople(),fromTs,toTs);
 
         log.info("Hotel booking processed");
 

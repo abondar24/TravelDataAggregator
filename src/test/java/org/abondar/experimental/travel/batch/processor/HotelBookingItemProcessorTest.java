@@ -1,4 +1,4 @@
-package org.abondar.experimental.travel.batch.hotel;
+package org.abondar.experimental.travel.batch.processor;
 
 import org.abondar.experimental.travel.model.batch.HotelBatchItem;
 import org.junit.jupiter.api.Test;
@@ -13,6 +13,7 @@ public class HotelBookingItemProcessorTest {
     @Test
     public void processTest() throws Exception {
         var hotelBatchItem = new HotelBatchItem("test", "test",
+                "test",
                 1, ZonedDateTime.now(), ZonedDateTime.now());
         var processor = new HotelBookingItemProcessor();
 

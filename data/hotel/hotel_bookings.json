@@ -1,4 +1,5 @@
 [{
+  "trip_id": 1,
   "city": "Amsterdam",
   "hotel_name": "Sheraton",
   "number_of_people": 2,

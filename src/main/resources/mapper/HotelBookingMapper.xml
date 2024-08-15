@@ -6,9 +6,10 @@
 <mapper namespace="org.abondar.experimental.travel.mapper.HotelBookingMapper">
 
     <insert id="insertHotelBookings" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO hotel_booking (city, hotel_name, number_of_people, booking_start,booking_end)
+        INSERT INTO hotel_booking (trip_id, city, hotel_name, number_of_people, booking_start,booking_end)
         VALUES
         <foreach collection="hotelBookings" item="hotelBooking" index="index" open="(" separator="), (" close=")">
+            #{hotelBooking.tripId},
             #{hotelBooking.city},
             #{hotelBooking.hotelName},
             #{hotelBooking.numberOfPeople},
@@ -16,6 +17,7 @@
             #{hotelBooking.bookingEnd}
         </foreach>
         ON DUPLICATE KEY UPDATE
+        trip_id = VALUES(trip_id),
         city = VALUES(city),
         hotel_name = VALUES(hotel_name),
         number_of_people = VALUES(number_of_people),

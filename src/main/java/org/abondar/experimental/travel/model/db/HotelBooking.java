@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class HotelBooking{
       private Long id;
+      private String tripId;
       private   String city;
       private   String hotelName;
       private   Integer numberOfPeople;

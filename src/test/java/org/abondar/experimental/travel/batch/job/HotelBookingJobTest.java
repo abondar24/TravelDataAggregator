@@ -1,4 +1,4 @@
-package org.abondar.experimental.travel.batch.hotel;
+package org.abondar.experimental.travel.batch.job;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
