@@ -31,7 +31,6 @@ public class HotelBookingJobTest {
     @Test
     void testJob() throws Exception {
 
-        //TODO: add test for empty file
         jobLauncherTestUtils.setJob(job);
         JobExecution jobExecution = jobLauncherTestUtils.launchJob();
 

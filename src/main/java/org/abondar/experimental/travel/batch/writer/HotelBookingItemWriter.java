@@ -23,7 +23,10 @@ public class HotelBookingItemWriter implements ItemWriter<HotelBooking> {
     @Override
     public void write(Chunk<? extends HotelBooking> chunk) throws Exception {
         var bookings = (List<HotelBooking>) chunk.getItems();
-        hotelBookingMapper.insertHotelBookings(bookings);
+
+        if (!bookings.isEmpty()) {
+            hotelBookingMapper.insertHotelBookings(bookings);
+        }
 
         log.info("Hotel bookings saved to db");
     }
