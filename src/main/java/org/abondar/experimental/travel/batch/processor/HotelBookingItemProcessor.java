@@ -4,9 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.abondar.experimental.travel.model.batch.HotelBatchItem;
 import org.abondar.experimental.travel.model.db.HotelBooking;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
+@Component
 @Slf4j
 public class HotelBookingItemProcessor implements ItemProcessor<HotelBatchItem, HotelBooking> {
 

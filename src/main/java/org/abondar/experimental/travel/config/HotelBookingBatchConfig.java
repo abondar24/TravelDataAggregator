@@ -43,17 +43,6 @@ public class HotelBookingBatchConfig {
 
 
     @Bean
-    public HotelBookingItemProcessor hotelBookingItemProcessor() {
-        return new HotelBookingItemProcessor();
-    }
-
-    @Bean
-    public HotelBookingItemWriter writer(HotelBookingMapper hotelBookingMapper) {
-
-        return new HotelBookingItemWriter(hotelBookingMapper);
-    }
-
-    @Bean
     @Qualifier("hotelBookingsJob")
     public Job importHotelBookingsJob(JobRepository jobRepository, Step step1, HotelBookingCompletionListener listener) {
         return new JobBuilder("hotelBookingsJob", jobRepository)
