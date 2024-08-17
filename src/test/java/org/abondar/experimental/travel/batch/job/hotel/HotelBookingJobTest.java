@@ -1,5 +1,6 @@
 package org.abondar.experimental.travel.batch.job.hotel;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
@@ -14,7 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.batch.job.name=hotelBookingsJob")
 @SpringBatchTest
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

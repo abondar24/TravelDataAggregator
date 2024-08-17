@@ -23,7 +23,7 @@ import org.testcontainers.utility.MountableFile;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Testcontainers
-@SpringBootTest
+@SpringBootTest(properties = {"spring.batch.job.name=hotelBookingsJob"})
 @SpringBatchTest
 @ActiveProfiles("sftp")
 @Tag("integration")

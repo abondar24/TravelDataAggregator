@@ -9,18 +9,19 @@ import org.abondar.experimental.travel.batch.processor.HotelBookingItemProcessor
 import org.abondar.experimental.travel.batch.writer.HotelBookingItemWriter;
 import org.abondar.experimental.travel.file.FileService;
 import org.abondar.experimental.travel.file.FileType;
-import org.abondar.experimental.travel.mapper.HotelBookingMapper;
 import org.abondar.experimental.travel.model.batch.HotelBatchItem;
 import org.abondar.experimental.travel.model.db.HotelBooking;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.json.JacksonJsonObjectReader;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.batch.item.json.builder.JsonItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -28,6 +29,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @RequiredArgsConstructor
+@ConditionalOnProperty(name ="spring.batch.job.name" ,havingValue = "hotelBookingsJob")
 public class HotelBookingBatchConfig {
 
 
@@ -44,10 +46,12 @@ public class HotelBookingBatchConfig {
 
     @Bean
     @Qualifier("hotelBookingsJob")
-    public Job importHotelBookingsJob(JobRepository jobRepository, Step step1, HotelBookingCompletionListener listener) {
+    public Job importHotelBookingsJob(JobRepository jobRepository, @Qualifier("hotelBookingStep") Step step1,
+                                      HotelBookingCompletionListener listener) {
         return new JobBuilder("hotelBookingsJob", jobRepository)
                 .listener(listener)
                 .start(step1)
+                .incrementer(new RunIdIncrementer())
                 .build();
     }
 
@@ -62,6 +66,7 @@ public class HotelBookingBatchConfig {
     }
 
     @Bean
+    @Qualifier("hotelBookingStep")
     public Step hotelBookingStep(JobRepository jobRepository,
                                  JsonItemReader<HotelBatchItem> reader, HotelBookingItemProcessor processor,
                                  PlatformTransactionManager transactionManager, HotelBookingItemWriter writer) {
