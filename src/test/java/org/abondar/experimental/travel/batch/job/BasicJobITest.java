@@ -1,6 +1,5 @@
 package org.abondar.experimental.travel.batch.job;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Tag;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
@@ -24,16 +23,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BasicJobITest {
 
 
-    @Autowired
-    protected JobLauncherTestUtils jobLauncherTestUtils;
-
     @Container
     protected static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:8.4.0")
             .withExposedPorts(3306)
             .withDatabaseName("travel_data")
             .withUsername("travel")
             .withPassword("travel!@#");
-
+    @Autowired
+    protected JobLauncherTestUtils jobLauncherTestUtils;
 
     @DynamicPropertySource
     static void configureTestProperties(DynamicPropertyRegistry registry) {
