@@ -1,6 +1,10 @@
 package org.abondar.experimental.travel.batch.job;
 
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Tag;
+import org.springframework.batch.test.JobLauncherTestUtils;
+import org.springframework.batch.test.context.SpringBatchTest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -8,10 +12,16 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+
 @Testcontainers
 @ActiveProfiles("sftp")
 @Tag("integration")
+@SpringBatchTest
 public class BasicJobITest {
+
+
+    @Autowired
+    protected JobLauncherTestUtils jobLauncherTestUtils;
 
     @Container
     protected static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:8.4.0")

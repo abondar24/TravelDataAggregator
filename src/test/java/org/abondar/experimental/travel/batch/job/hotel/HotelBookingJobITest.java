@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest(properties = {"spring.batch.job.name=hotelBookingsJob"})
-@SpringBatchTest
 public class HotelBookingJobITest  extends BasicJobITest {
 
     @Container
@@ -31,9 +30,6 @@ public class HotelBookingJobITest  extends BasicJobITest {
             .withCopyFileToContainer(MountableFile.forClasspathResource("testData/hotel_bookings.json", 0777),
                     "/home/fUser/data/hotel/hotel_bookings.json")
             .withCommand("fUser:fPass:::data");
-
-    @Autowired
-    private JobLauncherTestUtils jobLauncherTestUtils;
 
     @Autowired
     @Qualifier(value = "hotelBookingsJob")
