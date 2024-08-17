@@ -1,8 +1,8 @@
 package org.abondar.experimental.travel.batch.job.hotel;
 
+import org.abondar.experimental.travel.batch.job.BasicJobITest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
@@ -11,31 +11,19 @@ import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Testcontainers
+
 @SpringBootTest(properties = {"spring.batch.job.name=hotelBookingsJob"})
 @SpringBatchTest
-@ActiveProfiles("sftp")
-@Tag("integration")
-public class HotelBookingJobITest {
-
-    @Container
-    private static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:8.4.0")
-            .withExposedPorts(3306)
-            .withDatabaseName("travel_data")
-            .withUsername("travel")
-            .withPassword("travel!@#");
-
+public class HotelBookingJobITest  extends BasicJobITest {
 
     @Container
     private static final GenericContainer<?> sftpContainer = new GenericContainer<>("atmoz/sftp:latest")
@@ -54,9 +42,6 @@ public class HotelBookingJobITest {
 
     @DynamicPropertySource
     static void configureTestProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
-        registry.add("spring.datasource.username", mySQLContainer::getUsername);
-        registry.add("spring.datasource.password", mySQLContainer::getPassword);
         registry.add("sftp.host", sftpContainer::getHost);
         registry.add("sftp.port", sftpContainer::getFirstMappedPort);
     }
