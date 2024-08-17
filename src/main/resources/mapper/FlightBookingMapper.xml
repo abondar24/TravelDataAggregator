@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abondar.experimental.travel.mapper.FlightBookingMapper">
+
+    <insert id="insertFlightBookings" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO flight_booking (trip_id, source_city, destination_city,
+                                    flight_number, ticket_number, departure_time, arrival_time)
+        VALUES
+        <foreach collection="flightBookings" item="flightBooking" index="index" open="(" separator="), (" close=")">
+            #{flightBooking.tripId},
+            #{flightBooking.sourceCity},
+            #{flightBooking.destinationCity},
+            #{flightBooking.flightNumber},
+            #{flightBooking.ticketNumber},
+            #{flightBooking.departureTime},
+            #{flightBooking.arrivalTime}
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        trip_id = VALUES(trip_id),
+        source_city = VALUES(source_city),
+        destination_city = VALUES(destination_city),
+        flight_number = VALUES(flight_number),
+        ticket_number = VALUES(ticket_number),
+        departure_time = VALUES(departure_time),
+        arrival_time = VALUES(arrival_time)
+    </insert>
+</mapper>

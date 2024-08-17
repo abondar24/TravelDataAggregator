@@ -1,4 +1,4 @@
-package org.abondar.experimental.travel.batch.job.hotel;
+package org.abondar.experimental.travel.batch.job.flight;
 
 import org.abondar.experimental.travel.batch.job.BasicJobITest;
 import org.junit.jupiter.api.AfterAll;
@@ -14,19 +14,17 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.MountableFile;
 
-
-@SpringBootTest(properties = {"spring.batch.job.name=hotelBookingsJob"})
-public class HotelBookingJobITest extends BasicJobITest {
-
+@SpringBootTest(properties = "spring.batch.job.name=flightBookingsJob")
+public class FlightBookingJobITest extends BasicJobITest {
     @Container
     private static final GenericContainer<?> sftpContainer = new GenericContainer<>("atmoz/sftp:latest")
             .withExposedPorts(22)
-            .withCopyFileToContainer(MountableFile.forClasspathResource("testData/hotel_bookings.json", 0777),
-                    "/home/fUser/data/hotel/hotel_bookings.json")
+            .withCopyFileToContainer(MountableFile.forClasspathResource("testData/flight_bookings.csv", 0777),
+                    "/home/fUser/data/flight/flight_bookings.csv")
             .withCommand("fUser:fPass:::data");
 
     @Autowired
-    @Qualifier(value = "hotelBookingsJob")
+    @Qualifier(value = "flightBookingsJob")
     private Job job;
 
 
@@ -47,7 +45,7 @@ public class HotelBookingJobITest extends BasicJobITest {
     }
 
     @Test
-    public void testHotelBookingJob() throws Exception {
+    public void testFlightBookingJob() throws Exception {
         executeTest(job);
     }
 }

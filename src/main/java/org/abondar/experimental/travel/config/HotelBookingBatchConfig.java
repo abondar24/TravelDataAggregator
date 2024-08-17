@@ -33,8 +33,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class HotelBookingBatchConfig {
 
 
-    private final FileService fileService;
-
 
     @Bean
     @Primary
@@ -56,7 +54,7 @@ public class HotelBookingBatchConfig {
     }
 
     @Bean
-    public JsonItemReader<HotelBatchItem> hotelBookingReader(ObjectMapper objectMapper) {
+    public JsonItemReader<HotelBatchItem> hotelBookingReader(ObjectMapper objectMapper,FileService fileService) {
 
         return new JsonItemReaderBuilder<HotelBatchItem>()
                 .resource(fileService.getFile(FileType.HOTEL))

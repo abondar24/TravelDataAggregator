@@ -15,8 +15,9 @@ public class FileResolver {
         switch (fileType) {
             case HOTEL -> path = fileProperties.getHotel();
 
+            case FLIGHT -> path = fileProperties.getFlight();
+
             default -> throw new IllegalArgumentException("Invalid file type");
-            //TODO: add case for flight once flight job is implemented
             //TODO: add case for aggregeate once agg job is  implemented
         }
 
