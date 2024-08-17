@@ -22,13 +22,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBatchTest
 public class BasicJobITest {
 
-
     @Container
     protected static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:8.4.0")
             .withExposedPorts(3306)
             .withDatabaseName("travel_data")
             .withUsername("travel")
             .withPassword("travel!@#");
+
     @Autowired
     protected JobLauncherTestUtils jobLauncherTestUtils;
 
