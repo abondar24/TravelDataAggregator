@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abondar.experimental.travel.mapper.CruiseBookingMapper">
+
+    <insert id="insertCruiseBookings" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    INSERT INTO cruise_booking (trip_id, ticket_number, source_port, destination_port, cruise_start, cruise_end)
+    VALUES
+    <foreach collection="cruiseBookings" item="cruiseBooking" index="index" open="(" separator="), (" close=")">
+        #{cruiseBooking.tripId},
+        #{cruiseBooking.ticketNumber},
+        #{cruiseBooking.sourcePort},
+        #{cruiseBooking.destinationPort},
+        #{cruiseBooking.cruiseStart},
+        #{cruiseBooking.cruiseEnd}
+    </foreach>
+    ON DUPLICATE KEY UPDATE
+    trip_id = VALUES(trip_id),
+    ticket_number = VALUES(ticket_number),
+    source_port = VALUES(source_port),
+    destination_port = VALUES(destination_port),
+    cruise_start = VALUES(cruise_start),
+    cruise_end = VALUES(cruise_end)
+    </insert>
+
+</mapper>

@@ -3,7 +3,6 @@ package org.abondar.experimental.travel.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.RequiredArgsConstructor;
 import org.abondar.experimental.travel.batch.listener.HotelBookingCompletionListener;
 import org.abondar.experimental.travel.batch.processor.HotelBookingItemProcessor;
 import org.abondar.experimental.travel.batch.writer.HotelBookingItemWriter;
@@ -28,10 +27,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@RequiredArgsConstructor
-@ConditionalOnProperty(name ="spring.batch.job.name" ,havingValue = "hotelBookingsJob")
+@ConditionalOnProperty(name = "spring.batch.job.name", havingValue = "hotelBookingsJob")
 public class HotelBookingBatchConfig {
-
 
 
     @Bean
@@ -54,7 +51,7 @@ public class HotelBookingBatchConfig {
     }
 
     @Bean
-    public JsonItemReader<HotelBatchItem> hotelBookingReader(ObjectMapper objectMapper,FileService fileService) {
+    public JsonItemReader<HotelBatchItem> hotelBookingReader(ObjectMapper objectMapper, FileService fileService) {
 
         return new JsonItemReaderBuilder<HotelBatchItem>()
                 .resource(fileService.getFile(FileType.HOTEL))

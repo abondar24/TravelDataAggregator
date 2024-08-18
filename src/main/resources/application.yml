@@ -30,3 +30,4 @@ sftp:
 file:
   hotel: data/hotel/hotel_bookings.json
   flight: data/flight/flight_bookings.csv
+  cruise: data/cruise/cruise_bookings.xml

@@ -1,12 +1,11 @@
 package org.abondar.experimental.travel.config;
 
-import lombok.RequiredArgsConstructor;
 import org.abondar.experimental.travel.batch.listener.FlightBookingCompletionListener;
 import org.abondar.experimental.travel.batch.processor.FlightBookingItemProcessor;
 import org.abondar.experimental.travel.batch.writer.FlightBookingItemWriter;
 import org.abondar.experimental.travel.file.FileService;
 import org.abondar.experimental.travel.file.FileType;
-import org.abondar.experimental.travel.mapper.FlightBatchItemFieldSetMapper;
+import org.abondar.experimental.travel.model.batch.FlightBatchItemFieldSetMapper;
 import org.abondar.experimental.travel.model.batch.FlightBatchItem;
 import org.abondar.experimental.travel.model.db.FlightBooking;
 import org.springframework.batch.core.Job;
@@ -16,7 +15,6 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,17 +24,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@RequiredArgsConstructor
-@ConditionalOnProperty(name ="spring.batch.job.name" ,havingValue = "flightBookingsJob")
+@ConditionalOnProperty(name = "spring.batch.job.name", havingValue = "flightBookingsJob")
 public class FlightBookingBatchConfig {
 
     @Bean
     @Qualifier("flightBookingsJob")
-    public Job importFlightBookingsJob(JobRepository jobRepository, @Qualifier("flightBookingStep") Step step1,
+    public Job importFlightBookingsJob(JobRepository jobRepository, @Qualifier("flightBookingStep") Step flightBookingStep,
                                        FlightBookingCompletionListener listener) {
         return new JobBuilder("flightBookingsJob", jobRepository)
                 .listener(listener)
-                .start(step1)
+                .start(flightBookingStep)
                 .incrementer(new RunIdIncrementer())
                 .build();
     }

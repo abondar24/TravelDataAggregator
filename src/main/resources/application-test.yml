@@ -15,3 +15,4 @@ spring:
 file:
   hotel: src/main/resources/testData/hotel_bookings.json
   flight: src/main/resources/testData/flight_bookings.csv
+  cruise: src/main/resources/testData/cruise_bookings.xml

@@ -1,0 +1,18 @@
+<cruises>
+    <cruise>
+        <trip_id>TRIP123</trip_id>
+        <ticket_number>123456789</ticket_number>
+        <source_port>Miami</source_port>
+        <destination_port>Bahamas</destination_port>
+        <cruise_start>31-12-2023 14:23:00 EST</cruise_start>
+        <cruise_end>03-01-2024 10:00:00 EST</cruise_end>
+    </cruise>
+    <cruise>
+        <trip_id>TRIP124</trip_id>
+        <ticket_number>987654321</ticket_number>
+        <source_port>Los Angeles</source_port>
+        <destination_port>Hawaii</destination_port>
+        <cruise_start>01-01-2024 09:00:00 PST</cruise_start>
+        <cruise_end>05-01-2024 18:00:00 PST</cruise_end>
+    </cruise>
+</cruises>

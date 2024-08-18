@@ -15,5 +15,7 @@ public class FileProperties {
 
     private String flight;
 
+    private String cruise;
+
     //TODO: EXTEND WITH THE OTHER TYPES
 }
