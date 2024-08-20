@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @Testcontainers
-@ActiveProfiles("sftp")
+@ActiveProfiles("integration")
 @Tag("integration")
 @SpringBatchTest
 public class BasicJobITest {
