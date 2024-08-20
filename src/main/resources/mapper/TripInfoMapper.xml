@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abondar.experimental.travel.mapper.TripInfoMapper">
+
+    <insert id="insertTripIds">
+        INSERT INTO trip_info (trip_id)
+        VALUES
+        <foreach collection="tripIds" item="tripId" index="index" open="(" separator="), (" close=")">
+            (#{tripId})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        trip_id = VALUES(trip_id)
+    </insert>
+
+
+    <select id="selectRecentTripIds" resultType="String">
+        SELECT trip_id FROM trip_info
+        WHERE saving_time >= TIMESTAMPADD(MINUTE, -5, CURRENT_TIMESTAMP);
+    </select>
+
+</mapper>

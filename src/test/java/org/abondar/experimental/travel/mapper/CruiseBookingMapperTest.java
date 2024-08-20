@@ -1,7 +1,6 @@
 package org.abondar.experimental.travel.mapper;
 
 import org.abondar.experimental.travel.model.db.CruiseBooking;
-import org.abondar.experimental.travel.model.db.FlightBooking;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;

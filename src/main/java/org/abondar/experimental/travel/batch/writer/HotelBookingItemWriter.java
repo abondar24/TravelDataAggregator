@@ -4,10 +4,12 @@ package org.abondar.experimental.travel.batch.writer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.abondar.experimental.travel.mapper.HotelBookingMapper;
+import org.abondar.experimental.travel.mapper.TripInfoMapper;
 import org.abondar.experimental.travel.model.db.HotelBooking;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,13 +21,23 @@ public class HotelBookingItemWriter implements ItemWriter<HotelBooking> {
 
     private final HotelBookingMapper hotelBookingMapper;
 
+    private final TripInfoMapper tripInfoMapper;
 
     @Override
+    @Transactional
     public void write(Chunk<? extends HotelBooking> chunk) throws Exception {
         var bookings = (List<HotelBooking>) chunk.getItems();
 
         if (!bookings.isEmpty()) {
             hotelBookingMapper.insertHotelBookings(bookings);
+
+            var tripIds = bookings.stream()
+                    .map(HotelBooking::getTripId)
+                    .distinct()
+                    .toList();
+
+            tripInfoMapper.insertTripIds(tripIds);
+
         }
 
         log.info("Hotel bookings saved to db");
