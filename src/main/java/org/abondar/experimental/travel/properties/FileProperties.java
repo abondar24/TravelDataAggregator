@@ -17,5 +17,5 @@ public class FileProperties {
 
     private String cruise;
 
-    //TODO: EXTEND WITH THE OTHER TYPES
+    private String report;
 }

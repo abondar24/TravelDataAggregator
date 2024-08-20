@@ -19,8 +19,10 @@ public class FileResolver {
 
             case CRUISE -> path = fileProperties.getCruise();
 
+            case REPORT -> path = fileProperties.getReport();
+
             default -> throw new IllegalArgumentException("Invalid file type");
-            //TODO: add case for aggregeate once agg job is  implemented
+
         }
 
         return path;

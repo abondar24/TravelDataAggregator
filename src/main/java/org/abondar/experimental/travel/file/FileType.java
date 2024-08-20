@@ -4,5 +4,6 @@ public enum FileType {
 
     HOTEL,
     FLIGHT,
-    CRUISE
+    CRUISE,
+    REPORT
 }
