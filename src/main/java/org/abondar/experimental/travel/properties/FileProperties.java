@@ -17,5 +17,4 @@ public class FileProperties {
 
     private String cruise;
 
-    private String report;
 }
