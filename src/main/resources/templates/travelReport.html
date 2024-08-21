@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Latest travel data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Hotel Booking Report</h1>
+<table>
+    <thead>
+    <tr>
+        <th th:if="${reports[0].hotelCity != null}">Hotel City</th>
+        <th th:if="${reports[0].hotelName != null}">Hotel Name</th>
+        <th th:if="${reports[0].numberOfPeople != null}">Number of People</th>
+        <th th:if="${reports[0].bookingStart != null}">Booking Start</th>
+        <th th:if="${reports[0].bookingEnd != null}">Booking End</th>
+        <th th:if="${reports[0].flightSourceCity != null}">Flight Source City</th>
+        <th th:if="${reports[0].flightDestinationCity != null}">Flight Destination City</th>
+        <th th:if="${reports[0].flightNumber != null}">Flight Number</th>
+        <th th:if="${reports[0].flightTicketNumber != null}">Flight Ticket Number</th>
+        <th th:if="${reports[0].departureTime != null}">Departure Time</th>
+        <th th:if="${reports[0].arrivalTime != null}">Arrival Time</th>
+        <th th:if="${reports[0].cruiseTicketNumber != null}">Cruise Ticket Number</th>
+        <th th:if="${reports[0].cruiseSourcePort != null}">Cruise Source Port</th>
+        <th th:if="${reports[0].cruiseDestinationPort != null}">Cruise Destination Port</th>
+        <th th:if="${reports[0].cruiseStart != null}">Cruise Start</th>
+        <th th:if="${reports[0].cruiseEnd != null}">Cruise End</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="report : ${reports}">
+        <td th:if="${report.hotelCity}" th:text="${report.hotelCity}">Hotel City</td>
+        <td th:if="${report.hotelName}" th:text="${report.hotelName}">Hotel Name</td>
+        <td th:if="${report.numberOfPeople}" th:text="${report.numberOfPeople}">Number of People</td>
+        <td th:if="${report.bookingStart}" th:text="${report.bookingStart}">Booking Start</td>
+        <td th:if="${report.bookingEnd}" th:text="${report.bookingEnd}">Booking End</td>
+        <td th:if="${report.flightSourceCity}" th:text="${report.flightSourceCity}">Flight Source City</td>
+        <td th:if="${report.flightDestinationCity}" th:text="${report.flightDestinationCity}">Flight Destination City
+        </td>
+        <td th:if="${report.flightNumber}" th:text="${report.flightNumber}">Flight Number</td>
+        <td th:if="${report.flightTicketNumber}" th:text="${report.flightTicketNumber}">Flight Ticket Number</td>
+        <td th:if="${report.departureTime}" th:text="${report.departureTime}">Departure Time</td>
+        <td th:if="${report.arrivalTime}" th:text="${report.arrivalTime}">Arrival Time</td>
+        <td th:if="${report.cruiseTicketNumber}" th:text="${report.cruiseTicketNumber}">Cruise Ticket Number</td>
+        <td th:if="${report.cruiseSourcePort}" th:text="${report.cruiseSourcePort}">Cruise Source Port</td>
+        <td th:if="${report.cruiseDestinationPort}" th:text="${report.cruiseDestinationPort}">Cruise Destination Port
+        </td>
+        <td th:if="${report.cruiseStart}" th:text="${report.cruiseStart}">Cruise Start</td>
+        <td th:if="${report.cruiseEnd}" th:text="${report.cruiseEnd}">Cruise End</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

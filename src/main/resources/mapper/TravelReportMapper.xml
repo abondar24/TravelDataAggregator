@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abondar.experimental.travel.mapper.TravelReportMapper">
+
+    <resultMap id="HotelBookingReportItemResultMap" type="org.abondar.experimental.travel.model.report.HotelBookingReportItem">
+        <result column="trip_id" property="tripId"/>
+        <result column="hotel_city" property="hotelCity"/>
+        <result column="hotel_name" property="hotelName"/>
+        <result column="number_of_people" property="numberOfPeople"/>
+        <result column="booking_start" property="bookingStart" jdbcType="TIMESTAMP"/>
+        <result column="booking_end" property="bookingEnd" jdbcType="TIMESTAMP"/>
+        <result column="flight_source_city" property="flightSourceCity"/>
+        <result column="flight_destination_city" property="flightDestinationCity"/>
+        <result column="flight_number" property="flightNumber"/>
+        <result column="flight_ticket_number" property="flightTicketNumber"/>
+        <result column="departure_time" property="departureTime" jdbcType="TIMESTAMP"/>
+        <result column="arrival_time" property="arrivalTime" jdbcType="TIMESTAMP"/>
+        <result column="cruise_ticket_number" property="cruiseTicketNumber"/>
+        <result column="source_port" property="cruiseSourcePort"/>
+        <result column="destination_port" property="cruiseDestinationPort"/>
+        <result column="cruise_start" property="cruiseStart" jdbcType="TIMESTAMP"/>
+        <result column="cruise_end" property="cruiseEnd" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getDataByTripIds" resultMap="HotelBookingReportItemResultMap">
+        SELECT t.trip_id, hb.city as hotel_city ,hb.hotel_name,hb.number_of_people,hb.booking_start ,hb.booking_end,
+        fb.source_city as flight_source_city, fb.destination_city as flight_destination_city,
+        fb.flight_number,fb.ticket_number as flight_ticket_number , fb.departure_time, fb.arrival_time,
+        cb.ticket_number as cruise_ticket_number, cb.source_port,cb.destination_port, cb.cruise_start, cb.cruise_end
+
+        FROM
+        (SELECT trip_id FROM hotel_booking
+        UNION
+        SELECT trip_id FROM flight_booking
+        UNION
+        SELECT trip_id FROM cruise_booking) t
+
+        LEFT JOIN
+        hotel_booking hb ON t.trip_id = hb.trip_id
+        LEFT JOIN
+        flight_booking fb ON t.trip_id = fb.trip_id
+        LEFT JOIN
+        cruise_booking cb ON t.trip_id = cb.trip_id
+
+        WHERE
+        t.trip_id IN
+        <foreach item="tripId" collection="tripIds" open="(" separator="," close=")">
+            #{tripId}
+        </foreach>
+
+    </select>
+
+
+</mapper>

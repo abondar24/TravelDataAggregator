@@ -20,6 +20,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-batch")
     implementation ("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation ("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     implementation ("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
@@ -29,8 +30,8 @@ dependencies {
     implementation("com.mysql:mysql-connector-j:$mysqlVersion")
     implementation ("net.logstash.logback:logstash-logback-encoder:$encoderVersion")
     implementation("org.springframework.integration:spring-integration-sftp:$springIntVersion")
-    implementation ("org.glassfish.jaxb:jaxb-runtime:4.0.5")
-    implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
+    implementation ("org.glassfish.jaxb:jaxb-runtime:$jaxbRuntimeVersion")
+    implementation("jakarta.xml.bind:jakarta.xml.bind-api:$jaxbBindVersion")
     implementation("org.springframework:spring-oxm:$springOxmVersion")
 
 
