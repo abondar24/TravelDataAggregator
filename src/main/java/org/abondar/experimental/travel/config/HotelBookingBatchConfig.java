@@ -3,7 +3,7 @@ package org.abondar.experimental.travel.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.abondar.experimental.travel.batch.listener.HotelBookingCompletionListener;
+import org.abondar.experimental.travel.batch.listener.JobCompletionListener;
 import org.abondar.experimental.travel.batch.processor.HotelBookingItemProcessor;
 import org.abondar.experimental.travel.batch.writer.HotelBookingItemWriter;
 import org.abondar.experimental.travel.file.FileService;
@@ -42,7 +42,7 @@ public class HotelBookingBatchConfig {
     @Bean
     @Qualifier("hotelBookingsJob")
     public Job importHotelBookingsJob(JobRepository jobRepository, @Qualifier("hotelBookingStep") Step step1,
-                                      HotelBookingCompletionListener listener) {
+                                      JobCompletionListener listener) {
         return new JobBuilder("hotelBookingsJob", jobRepository)
                 .listener(listener)
                 .start(step1)

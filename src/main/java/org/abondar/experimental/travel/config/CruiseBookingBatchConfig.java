@@ -1,6 +1,6 @@
 package org.abondar.experimental.travel.config;
 
-import org.abondar.experimental.travel.batch.listener.CruiseBookingCompletionListener;
+import org.abondar.experimental.travel.batch.listener.JobCompletionListener;
 import org.abondar.experimental.travel.batch.processor.CruiseBookingItemProcessor;
 import org.abondar.experimental.travel.batch.writer.CruiseBookingItemWriter;
 import org.abondar.experimental.travel.file.FileService;
@@ -30,7 +30,7 @@ public class CruiseBookingBatchConfig {
     @Qualifier("cruiseBookingsJob")
     public Job importCruiseBookingsJob(JobRepository jobRepository,
                                        @Qualifier("cruiseBookingStep") Step cruiseBookingStep,
-                                       CruiseBookingCompletionListener listener) {
+                                       JobCompletionListener listener) {
         return new JobBuilder("cruiseBookingsJob", jobRepository)
                 .listener(listener)
                 .start(cruiseBookingStep)

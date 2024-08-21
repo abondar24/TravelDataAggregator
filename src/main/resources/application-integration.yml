@@ -1,3 +1,5 @@
 sftp:
   enabled: true
 
+email:
+  enabled: true

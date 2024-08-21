@@ -14,6 +14,17 @@ spring:
 
     date-format: yyyy-MM-dd'T'HH:mm:ss
 
+  mail:
+    host: smtp.travel.com
+    port: 587
+    username: travel
+    password: travelEmail12!
+    properties:
+      from: travelProcessor@trp.com
+      mail:
+        smtp:
+          auth: true
+
 
 mybatis:
   type-aliases-package: org.abondar.experimental.travel.model.db
@@ -25,6 +36,12 @@ sftp:
   username: fUser
   password: fPass
   enabled: false
+
+
+email:
+  enabled: false
+  to: abondar24@yahoo.com
+  subject: "Travel data report at: "
 
 
 file:
