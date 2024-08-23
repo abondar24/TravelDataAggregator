@@ -3,10 +3,8 @@ package org.abondar.experimental.travel.batch.writer;
 import org.abondar.experimental.travel.mapper.CruiseBookingMapper;
 import org.abondar.experimental.travel.model.db.CruiseBooking;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.batch.item.Chunk;
 
 import java.sql.Timestamp;
@@ -15,8 +13,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-public class CruiseBookingItemWriterTest {
+public class CruiseBookingItemWriterTest extends BaseWriterTest {
 
     @Mock
     private CruiseBookingMapper cruiseBookingMapper;

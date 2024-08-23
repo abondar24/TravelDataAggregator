@@ -47,14 +47,14 @@ public class ReportServiceTest {
         );
         when(travelReportMapper.getDataByTripIds(tripIds)).thenReturn(reportItems);
 
-        when(templateEngine.process(eq("report"), any(Context.class))).thenReturn("Generated HTML");
+        when(templateEngine.process(eq("travelReport"), any(Context.class))).thenReturn("Generated HTML");
 
         String result = reportService.buildReport();
 
         assertEquals("Generated HTML", result);
         verify(tripInfoMapper).selectRecentTripIds();
         verify(travelReportMapper).getDataByTripIds(tripIds);
-        verify(templateEngine).process(eq("report"), any(Context.class));
+        verify(templateEngine).process(eq("travelReport"), any(Context.class));
     }
 
 }

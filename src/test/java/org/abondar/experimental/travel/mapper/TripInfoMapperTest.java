@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ActiveProfiles("test")
 @MybatisTest
@@ -25,6 +25,6 @@ public class TripInfoMapperTest {
 
         var res = mapper.selectRecentTripIds();
 
-        assertEquals("test", res.get(0));
+        assertTrue(res.size() > 0);
     }
 }

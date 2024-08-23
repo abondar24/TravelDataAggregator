@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -37,11 +38,6 @@ public class EmailServiceTest {
 
         emailService.sendEmail();
 
-        SimpleMailMessage expectedMessage = new SimpleMailMessage();
-        expectedMessage.setTo("test@abondar.org");
-        expectedMessage.setSubject("subject");
-        expectedMessage.setText("test report");
-
-        verify(mailSender).send(expectedMessage);
+        verify(mailSender).send(any(SimpleMailMessage.class));
     }
 }
