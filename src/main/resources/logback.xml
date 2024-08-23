@@ -18,7 +18,7 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <springProfile name="docker">
+    <springProfile name="cloud">
         <root level="info">
             <appender-ref ref="JSON_CONSOLE"/>
         </root>

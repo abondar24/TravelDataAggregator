@@ -3,13 +3,14 @@ plugins {
     id "idea"
     id "org.springframework.boot" version "$springBootVersion"
     id "io.freefair.lombok" version "$lombokVersion"
+    id 'com.google.cloud.tools.jib' version "$jibVersion"
 }
 
 apply plugin: "java"
 apply plugin: "io.spring.dependency-management"
 
 group = 'org.abondar.experimental.travel'
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -55,4 +56,25 @@ def integrationTest = tasks.register("integrationTest",Test){
     useJUnitPlatform{
         includeTags "integration"
     }
+}
+
+
+jib {
+    from {
+        //image = "eclipse-temurin:17-jre"
+        image = "ghcr.io/graalvm/jdk-community:22"
+    }
+    to {
+        image = "$imageName:$project.version"
+
+        auth {
+            username = "$dockerhubUser"
+            password = "$dockerhubPass"
+        }
+    }
+
+    container {
+        mainClass = "org.abondar.experimental.travel.TravelDataAggregatorApplication"
+    }
+
 }
