@@ -39,7 +39,7 @@ public class ReportService {
         context.setVariable("reports", reportData);
 
         log.info("Building HTML report");
-        return templateEngine.process("report", context);
+        return templateEngine.process("travelReport", context);
     }
 
 }

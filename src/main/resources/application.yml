@@ -16,14 +16,15 @@ spring:
 
   mail:
     host: smtp.travel.com
-    port: 587
-    username: travel
-    password: travelEmail12!
+    port: 1025
+    username:
+    password:
     properties:
       from: travelProcessor@trp.com
       mail:
         smtp:
-          auth: true
+          auth: false
+          starttls: false
 
 
 mybatis:

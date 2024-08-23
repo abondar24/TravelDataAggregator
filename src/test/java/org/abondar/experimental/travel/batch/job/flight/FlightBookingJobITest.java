@@ -36,11 +36,13 @@ public class FlightBookingJobITest extends BasicJobITest {
 
     @AfterAll
     public static void cleanUp() {
+        smtpContainer.stop();
         sftpContainer.stop();
     }
 
     @BeforeEach
     public void init() {
+        smtpContainer.start();
         sftpContainer.start();
     }
 
