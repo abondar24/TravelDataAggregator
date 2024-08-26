@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: travelproccessor-config
+  namespace: travelspace
+data:
+  DB_HOST: traveldb
+  DB_PORT: "3306"
+  SMTP_HOST: travelsmtp
+  SFTP_HOST: travelsftp
+  JOB_NAME: "flightBookingsJob"

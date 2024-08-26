@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: flight-bookings-cronjob
+  namespace: travelspace
+spec:
+  schedule: "0 3 * * *"  # Adjust the schedule as needed
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: travelprocessor
+              image: abondar/travel-processor:1.0.0
+              envFrom:
+                - configMapRef:
+                    name: travelproccessor-config
+                - secretRef:
+                    name: travelproccessor-secret
+              env:
+                - name: JOB_NAME
+                  value: "hotelBookingsJob"  # Set the JOB_NAME directly if needed
+          restartPolicy: OnFailure
