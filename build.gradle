@@ -75,6 +75,7 @@ jib {
 
     container {
         mainClass = "org.abondar.experimental.travel.TravelDataAggregatorApplication"
+        jvmFlags = ["-Dspring.profiles.active=cloud"]
     }
 
 }
