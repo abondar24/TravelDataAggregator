@@ -15,7 +15,7 @@ spec:
         app: traveldb
     spec:
       containers:
-        - name: authdb
+        - name: traveldb
           image: mysql:8.4.0
           ports:
             - containerPort: 3306

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: travelsmtp
+  namespace: travelspace
+spec:
+  selector:
+    app: travelsmtp
+  ports:
+    - port: 1025
+      targetPort: 1025
+  type: ClusterIP

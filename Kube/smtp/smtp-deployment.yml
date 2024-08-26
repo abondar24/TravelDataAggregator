@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travelsmtp
+  namespace: travelspace
+
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: travelsmtp
+  template:
+    metadata:
+      labels:
+        app: travelsmtp
+    spec:
+      containers:
+        - name: smtp
+          image: mailhog/mailhog:latest
+          ports:
+            - containerPort: 1025
