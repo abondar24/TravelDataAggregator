@@ -1,45 +1,34 @@
 package org.abondar.experimental.travel.batch.writer;
 
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.abondar.experimental.travel.mapper.HotelBookingMapper;
 import org.abondar.experimental.travel.mapper.TripInfoMapper;
 import org.abondar.experimental.travel.model.db.HotelBooking;
-import org.springframework.batch.item.Chunk;
-import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
-public class HotelBookingItemWriter implements ItemWriter<HotelBooking> {
+public class HotelBookingItemWriter extends BaseItemWriter<HotelBooking> {
 
 
     private final HotelBookingMapper hotelBookingMapper;
 
-    private final TripInfoMapper tripInfoMapper;
+    public HotelBookingItemWriter(TripInfoMapper tripInfoMapper, HotelBookingMapper hotelBookingMapper) {
+        super(tripInfoMapper);
+        this.hotelBookingMapper = hotelBookingMapper;
+    }
+
 
     @Override
-    @Transactional
-    public void write(Chunk<? extends HotelBooking> chunk) throws Exception {
-        var bookings = (List<HotelBooking>) chunk.getItems();
+    protected void insertBookings(List<HotelBooking> bookings) {
+        hotelBookingMapper.insertHotelBookings(bookings);
+    }
 
-        if (!bookings.isEmpty()) {
-            hotelBookingMapper.insertHotelBookings(bookings);
-
-            var tripIds = bookings.stream()
-                    .map(HotelBooking::getTripId)
-                    .distinct()
-                    .toList();
-
-            tripInfoMapper.insertTripIds(tripIds);
-
-        }
-
-        log.info("Hotel bookings saved to db");
+    @Override
+    protected String getTripId(HotelBooking booking) {
+        return booking.getTripId();
     }
 }
